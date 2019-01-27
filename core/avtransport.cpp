@@ -459,38 +459,48 @@ QString AVTransport::getCurrentAlbum()
 
 bool AVTransport::getNextSupported()
 {
-    return (m_currentTransportActions & UPnPClient::AVTransport::TPA_Next) &&
-            !m_nextURI.isEmpty();
+    /*return (m_currentTransportActions & UPnPClient::AVTransport::TPA_Next) &&
+            !m_nextURI.isEmpty();*/
+    return !m_nextURI.isEmpty();
 }
 
 bool AVTransport::getPauseSupported()
 {
-    return m_currentTransportActions & UPnPClient::AVTransport::TPA_Pause;
+    /*return m_currentTransportActions & UPnPClient::AVTransport::TPA_Pause;*/
+    return true;
 }
 
 bool AVTransport::getPlaySupported()
 {
-    return (m_currentTransportActions & UPnPClient::AVTransport::TPA_Play) &&
-            !m_currentURI.isEmpty();
+    /*return (m_currentTransportActions & UPnPClient::AVTransport::TPA_Play) &&
+            !m_currentURI.isEmpty();*/
+    return !m_currentURI.isEmpty();
 }
 
 bool AVTransport::getPreviousSupported()
 {
-    return m_currentTransportActions & UPnPClient::AVTransport::TPA_Previous;
+    /*return m_currentTransportActions & UPnPClient::AVTransport::TPA_Previous;*/
+    return true;
 }
 
 bool AVTransport::getSeekSupported()
 {
-    if (m_transportState == Playing)
+    /*if (m_transportState == Playing)
         return m_currentTrackDuration > 0 &&
                 (m_currentTransportActions & UPnPClient::AVTransport::TPA_Seek);
+    else
+        return false;*/
+
+    if (m_transportState == Playing)
+        return m_currentTrackDuration > 0;
     else
         return false;
 }
 
 bool AVTransport::getStopSupported()
 {
-    return m_currentTransportActions & UPnPClient::AVTransport::TPA_Stop;
+    /*return m_currentTransportActions & UPnPClient::AVTransport::TPA_Stop;*/
+    return true;
 }
 
 bool AVTransport::getPlayable()
